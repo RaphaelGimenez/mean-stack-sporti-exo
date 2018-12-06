@@ -1,10 +1,6 @@
 # Mean stack exercise
 
----
-
 ## What I learned
-
----
 
 - How a MEAN stack environment works
   - Set up a NodeJs server
@@ -20,7 +16,5 @@
 
 # How to use ?
 
----
-
-start local server : npm start
+start local server : npm start  
 start local server watching files : npm run dev
