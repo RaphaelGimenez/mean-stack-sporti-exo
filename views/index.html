@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="fr" ng-app="app">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Mean stack sporti exo</title>
+
+    <!-- ### -->
+    <!-- css -->
+    <!-- ### -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/assets/css/app.css" />
+    <link rel="stylesheet" href="/assets/css/app.animation.css" />
+
+    <!-- ### -->
+    <!-- libs -->
+    <!-- ### -->
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAb90YNivzcnUKLg2cjnciG0sD9-H7dWco"
+      async
+      defer
+    ></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+
+    <!-- ######### -->
+    <!-- app files -->
+    <!-- ######### -->
+
+    <!-- config -->
+
+    <script src="/app/app.module.js"></script>
+    <script src="/app/app.config.js"></script>
+
+    <!-- services -->
+
+    <script src="/app/core/list/list.module.js"></script>
+    <script src="/app/core/list/list.service.js"></script>
+
+    <script src="/app/core/spot/spot.module.js"></script>
+    <script src="/app/core/spot/spot.service.js"></script>
+
+    <!-- components -->
+
+    <script src="/app/select-sports/select-sports.module.js"></script>
+    <script src="/app/select-sports/select-sports.component.js"></script>
+
+    <script src="/app/discover-spots/discover-spots.module.js"></script>
+    <script src="/app/discover-spots/discover-spots.component.js"></script>
+
+    <!-- directives -->
+
+    <script src="/app/utils/google-map/google-map.module.js"></script>
+    <script src="/app/utils/google-map/google-map.directive.js"></script>
+  </head>
+
+  <body>
+    <div class="view-container h-100">
+      <div ng-view class="h-100 w-100 view-frame"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.view-container {
+  position: relative;
+}
+.view-frame {
+  position: absolute;
+}
+
+.sports-list {
+  max-height: 350px;
+  overflow: overlay;
+}
+
+.lists {
+  z-index: 1;
+}
+
+.list-tools {
+  padding: 10px;
+  margin: 1em 0;
+  justify-content: space-evenly;
+}
+
+.form-group {
+  position: relative;
+}
+
+.spot-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+  .lists {
+    height: 30%;
+    overflow: auto;
+  }
+
+  #maps {
+    height: 70%;
+  }
+
+  .sports-list {
+    max-height: 80%;
+    overflow: overlay;
+  }
+}

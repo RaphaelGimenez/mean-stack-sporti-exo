@@ -1,0 +1,78 @@
+.view-frame.ng-leave {
+  animation: 1s fade-out;
+  z-index: 80;
+}
+
+.view-frame.ng-enter {
+  animation: 1s fade-in;
+  z-index: 100;
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-20px);
+    opacity: 0;
+    display: none;
+  }
+}
+
+.form-group.ng-enter,
+.form-group.ng-leave,
+.form-group.ng-move {
+  transition: 0.3s ease all;
+}
+
+.form-group.ng-enter {
+  top: -20px;
+  opacity: 0;
+}
+.form-group.ng-enter.ng-enter-active {
+  top: 0px;
+  opacity: 1;
+}
+.form-group.ng-leave {
+  top: 0px;
+  opacity: 1;
+}
+.form-group.ng-leave.ng-leave-active {
+  top: -20px;
+  opacity: 0;
+}
+
+.spot-item.ng-enter,
+.spot-item.ng-leave,
+.spot-item.ng-move {
+  transition: 0.3s ease all;
+}
+
+.spot-item.ng-enter {
+  left: -20px;
+  opacity: 0;
+}
+.spot-item.ng-enter.ng-enter-active {
+  left: 0px;
+  opacity: 1;
+}
+.spot-item.ng-leave {
+  left: 0px;
+  opacity: 1;
+}
+.spot-item.ng-leave.ng-leave-active {
+  left: -20px;
+  opacity: 0;
+}

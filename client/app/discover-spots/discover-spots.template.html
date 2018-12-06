@@ -1,0 +1,75 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-12 col-sm-3 shadow-lg lists ">
+      <div class="input-group mt-5">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01"
+            >Listes</label
+          >
+        </div>
+        <select ng-model="$ctrl.selectedList" class="custom-select"
+          ><option ng-repeat="list in $ctrl.lists" value="{{ list._id }}">{{
+            list.name
+          }}</option></select
+        >
+      </div>
+      <div class="d-flex list-tools">
+        <i
+          class="far fa-trash-alt text-danger"
+          ng-click="$ctrl.deleteList()"
+        ></i>
+        <i
+          class="fas text-primary"
+          ng-class="!$ctrl.showAddListInput ? 'fa-plus' : 'fa-minus'"
+          ng-click="$ctrl.showAddListInputHandler()"
+        ></i>
+      </div>
+
+      <form
+        ng-if="$ctrl.showAddListInput"
+        ng-submit="$ctrl.createList()"
+        class="form-group"
+      >
+        <label for="newListName" class="d-block text-center"
+          >Nom de la nouvelle liste :</label
+        >
+        <input
+          type="text"
+          id="newListName"
+          ng-model="$ctrl.newListName"
+          class="form-control"
+        />
+        <button type="submit" class="btn btn-primary d-block mx-auto mt-1">
+          valider
+        </button>
+      </form>
+
+      <ul class="list-group">
+        <li
+          ng-repeat="spot in $ctrl.spots"
+          class="list-group-item spot-item"
+          ng-class="{'list-group-item-info': $ctrl.selectedSpot.id === spot._id}"
+        >
+          {{ spot.name }}
+          <i
+            class="far fa-trash-alt text-danger"
+            ng-click="$ctrl.deleteSpot(spot._id)"
+          ></i>
+        </li>
+        <li ng-if="$ctrl.showAddSpotItem" class="list-group-item spot-item">
+          {{ $ctrl.selectedSpot.name }}
+          <i
+            class="fas fa-plus"
+            ng-click="$ctrl.addSpot($ctrl.selectedSpot.id, $ctrl.selectedSpot.name)"
+          ></i>
+        </li>
+      </ul>
+    </div>
+    <google-map
+      marker-on-click="$ctrl.markerOnClickHandler(spot)"
+      fav-markers="$ctrl.spots"
+      sports="$ctrl.sports"
+      class="col-12 col-sm-9"
+    ></google-map>
+  </div>
+</div>
