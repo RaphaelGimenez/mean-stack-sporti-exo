@@ -1,11 +1,11 @@
-import express from "express";
-import path from "path";
-import bodyParser from "body-parser";
-import ejs from "ejs";
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
 
 // import routes
-import index from "./routes/index";
-import api from "./routes/api";
+const index = require("./routes/index");
+const api = require("./routes/api");
 
 // port
 const port = 4000;
@@ -27,10 +27,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // set up routes
-app.use("/api", api);
-app.use("/*", index);
+app.use("/api", api.router);
+app.use("/*", index.router);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
-  console.log(`http://localhost:${port}`);
 });

@@ -1,11 +1,8 @@
-import express from "express";
-import mongoose from "mongoose";
-
-// import model
-import List from "../models/List";
+const express = require("express");
+const mongoose = require("mongoose");
 
 // import controllers
-import * as Lists from "../controllers/lists";
+const Lists = require("../controllers/lists");
 
 const router = express.Router();
 
@@ -38,4 +35,4 @@ router
   .route("/lists/:listId/spots/:spotId")
   .delete(Lists.delete_spot_from_list);
 
-export default router;
+module.exports = { router };

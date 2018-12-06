@@ -1,5 +1,5 @@
 // import model
-import List from "../models/List";
+const List = require("../models/List");
 
 const formatResponse = (status, data, message = "") => {
   return {
@@ -9,7 +9,7 @@ const formatResponse = (status, data, message = "") => {
   };
 };
 
-const get_all_lists = (req, res) => {
+exports.get_all_lists = (req, res) => {
   List.find((err, lists) => {
     if (err) {
       return console.log(err);
@@ -18,7 +18,7 @@ const get_all_lists = (req, res) => {
   });
 };
 
-const create_list = (req, res) => {
+exports.create_list = (req, res) => {
   const list = new List(req.body);
   list
     .save()
@@ -30,7 +30,7 @@ const create_list = (req, res) => {
     });
 };
 
-const get_single_list = (req, res) => {
+exports.get_single_list = (req, res) => {
   List.findById({ _id: req.params.listId }, (err, list) => {
     if (err) {
       return console.log(err);
@@ -39,7 +39,7 @@ const get_single_list = (req, res) => {
   });
 };
 
-const delete_list = (req, res) => {
+exports.delete_list = (req, res) => {
   List.findByIdAndDelete({ _id: req.params.listId }, err => {
     if (err) {
       return console.log(err);
@@ -52,7 +52,7 @@ const delete_list = (req, res) => {
   });
 };
 
-const add_spot_to_list = (req, res) => {
+exports.add_spot_to_list = (req, res) => {
   List.findByIdAndUpdate(
     { _id: req.params.listId },
     { $push: { spots: { _id: req.params.spotId, name: req.body.name } } },
@@ -73,7 +73,7 @@ const add_spot_to_list = (req, res) => {
   );
 };
 
-const delete_spot_from_list = (req, res) => {
+exports.delete_spot_from_list = (req, res) => {
   List.findByIdAndUpdate(
     { _id: req.params.listId },
     { $pull: { spots: { _id: req.params.spotId } } },
@@ -92,13 +92,4 @@ const delete_spot_from_list = (req, res) => {
         );
     }
   );
-};
-
-export {
-  get_all_lists,
-  create_list,
-  get_single_list,
-  delete_list,
-  add_spot_to_list,
-  delete_spot_from_list
 };

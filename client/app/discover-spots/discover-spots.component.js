@@ -21,6 +21,7 @@
           $ctrl.selectedList = id ? id : $ctrl.lists[0]._id;
         } else {
           $ctrl.lists = undefined;
+          $ctrl.spots = [];
         }
       });
     };
