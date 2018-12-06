@@ -16,5 +16,6 @@
 
 # How to use ?
 
+install dependencies : npm install  
 start local server : npm start  
 start local server watching files : npm run dev
