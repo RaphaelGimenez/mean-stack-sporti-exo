@@ -8,7 +8,8 @@ const index = require("./routes/index");
 const api = require("./routes/api");
 
 // port
-const port = 4000;
+// const port = 4000;
+const port = process.env.PORT || 8080;
 
 // init app
 const app = express();
