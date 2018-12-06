@@ -14,7 +14,7 @@ body {
 
 .sports-list {
   max-height: 350px;
-  overflow: overlay;
+  overflow: auto;
 }
 
 .lists {
