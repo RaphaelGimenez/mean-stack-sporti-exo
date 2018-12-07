@@ -22,22 +22,20 @@
       let map, infoWindow, userPos;
       let markers = [];
 
-      // map config
+      // Map config
       const mapOptions = {
         center: new google.maps.LatLng(47.824905, 2.618787),
-        zoom: 10,
+        zoom: 8,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: true
       };
 
-      // init map
       function initMap() {
         if (map === void 0) {
           map = new google.maps.Map(element[0], mapOptions);
         }
       }
 
-      // center map
       function centerMap(pos) {
         map.setCenter(pos);
       }
@@ -54,11 +52,11 @@
         });
       }
 
-      // place a marker
+      // Place marker on map
       function setMarker(map, position, title, content, spot) {
         let marker;
 
-        // change icon if spot in favorite list
+        // Change icon if spot in favorite list
         const icon =
           scope.favMarkers &&
           scope.favMarkers.filter(e => {
@@ -77,14 +75,14 @@
         marker = new google.maps.Marker(markerOptions);
         markers.push(marker);
 
-        // attach listener to the current marker
+        // Attach listener to the current marker
         google.maps.event.addListener(marker, "click", function() {
-          // close infoWindow if open
+          // Close infoWindow if open
           if (infoWindow !== void 0) {
             infoWindow.close();
           }
 
-          // open new infoWindow
+          // Open new infoWindow
           const infoWindowOptions = {
             content: content
           };
@@ -96,12 +94,12 @@
         });
       }
 
-      // show map
+      // Show map
       initMap();
 
-      // fetch spots in bounds on map idle
-      google.maps.event.addListener(map, "idle", function() {
-        // Get map bounds
+      // Get markers in bounds and place them on map
+      function putNewMarkersOnMap() {
+        // Get & format map bounds
         const bounds = map.getBounds();
         const ne = bounds.getNorthEast();
         const sw = bounds.getSouthWest();
@@ -110,7 +108,6 @@
           selectedHobbies: scope.sports.split(",")
         };
 
-        // fetch
         Spot.getAllMarkersInBounds(
           {
             southwest: `${sw.lng()},${sw.lat()}`,
@@ -118,13 +115,13 @@
           },
           body
         ).$promise.then(data => {
-          // clear markers
+          // Clear markers
           angular.forEach(markers, (marker, key) => {
             marker.setMap(null);
           });
           markers = [];
 
-          // set new markers
+          // Place new markers
           angular.forEach(data, (val, key) => {
             const name = val.name;
             const content = `<div class="infoWindow-content"><h3>${
@@ -143,7 +140,18 @@
             );
           });
         });
+      }
+
+      // On map Idle
+      google.maps.event.addListener(map, "idle", function() {
+        putNewMarkersOnMap();
       });
+
+      scope.$onChanges = function(changes) {
+        if (changes.favMarkers && map.getBounds()) {
+          putNewMarkersOnMap();
+        }
+      };
     }
   }
 })();
